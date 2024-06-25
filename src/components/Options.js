@@ -1,16 +1,16 @@
 import { useQuestion } from "../context/questionscontext";
 
 function Options() {
-  const { question, dispatch, answer } = useQuestion();
+  const { questions, dispatch, answer, index } = useQuestion();
 
   return (
     <div className="options">
-      {question.options.map((option, i) => (
+      {questions.at(index).options.map((option, i) => (
         <button
           key={option}
           className={`btn btn-option ${answer === i ? "answer" : ""} ${
             answer !== null
-              ? i === question.correctOption
+              ? i === questions.at(index).correctOption
                 ? "correct"
                 : "wrong"
               : ""

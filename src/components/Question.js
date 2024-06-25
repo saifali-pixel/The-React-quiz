@@ -2,10 +2,10 @@ import { useQuestion } from "../context/questionscontext";
 import Options from "./Options";
 
 function Question() {
-  const { question } = useQuestion();
+  const { questions, index } = useQuestion();
   return (
     <div>
-      <h4>{question.question}</h4>
+      <h4>{questions.at(index).question}</h4>
       <Options />
     </div>
   );

@@ -96,7 +96,7 @@ function QuestionscontextProvider({ children }) {
         const data = await res.json();
 
         dispatch({ type: "DataReceived", payload: data });
-        console.log(data, "data");
+        // console.log(data, "data");
       } catch (error) {
         dispatch({ type: "datafailed", payload: error.message });
       }
@@ -123,6 +123,7 @@ function QuestionscontextProvider({ children }) {
         index,
         points,
         secondRemaining,
+        questions,
       }}
     >
       {children}
