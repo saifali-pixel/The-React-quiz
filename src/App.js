@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useReducer } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Loader from "./components/Loader";
@@ -14,63 +13,28 @@ import Timer from "./components/Timer";
 import { useQuestion } from "./context/questionscontext";
 
 function App() {
-  const {
-    numQuestions,
-    dispatch,
-    answer,
-    highScore,
-    totalPoints,
-    ErrorMsg,
-    status,
-    index,
-    points,
-    secondRemaining,
-    questions,
-  } = useQuestion();
+  const { status } = useQuestion();
+
   return (
     <div className="app">
       <Header />
       <Main>
         {status === "loading" && <Loader />}
-        {status === "error" && <Error msg={ErrorMsg} />}
+        {status === "error" && <Error />}
 
-        {status === "ready" && (
-          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
-        )}
+        {status === "ready" && <StartScreen />}
         {status === "active" && (
           <>
-            <Progress
-              numQuestions={numQuestions}
-              index={index}
-              points={points}
-              totalPoints={totalPoints}
-            />
-            <Question
-              question={questions[index]}
-              dispatch={dispatch}
-              answer={answer}
-            />
+            <Progress />
+            <Question />
             <Footer>
-              <Timer secondRemaining={secondRemaining} dispatch={dispatch} />
-
-              <NextButton
-                dispatch={dispatch}
-                answer={answer}
-                index={index}
-                numQuestions={numQuestions}
-              />
+              <Timer />
+              <NextButton />
             </Footer>
           </>
         )}
 
-        {status === "finished" && (
-          <FinishedScreen
-            points={points}
-            totalPoints={totalPoints}
-            highScore={highScore}
-            dispatch={dispatch}
-          />
-        )}
+        {status === "finished" && <FinishedScreen />}
       </Main>
     </div>
   );

@@ -1,4 +1,8 @@
-function FinishedScreen({ points, totalPoints, highScore, dispatch }) {
+import { useQuestion } from "../context/questionscontext";
+
+function FinishedScreen() {
+  const { points, totalPoints, highScore, dispatch } = useQuestion();
+
   const perc = (points / totalPoints) * 100;
 
   let emoji;
