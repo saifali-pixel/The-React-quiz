@@ -16,7 +16,7 @@ const initialState = {
 const SECS_PER_QUESTIONS = 30;
 
 //setstate
-function reducer(state, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
     case "DataReceived":
       return { ...state, questions: action.payload, status: "ready" };
@@ -69,7 +69,7 @@ function reducer(state, action) {
         status: state.secondRemaining === 0 ? "finished" : state.status,
       };
     default:
-      return initialState;
+      return state;
   }
 }
 
